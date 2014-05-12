@@ -85,3 +85,27 @@ GeoNetwork.Settings.results = {
         featurecolorCSS: undefined
 };
 
+
+/** Provide a mapping between various GeoNetwork protocol and mime types and 
+ *  the CSS icon class. Return a generic class if we don't have a mapping.
+ */
+GeoNetwork.Settings.protocolToCSS = function(type, useDownload) {
+      var typesAndProtocols = {
+        'application/vnd.ogc.wms_xml': 'fabutton fa fa-plus-circle md-mn-wms',
+        'application/vnd.ogc.wmc': 'fabutton fa fa-plus-circle md-mn-wms',
+        'OGC:WMS': 'fabutton fa fa-plus-circle md-mn-wms',
+        'OGC:WMS-1.1.1-http-get-map': 'fabutton fa fa-plus-circle md-mn-wms',
+        'OGC:WMS-1.3.0-http-get-map': 'fabutton fa fa-plus-circle md-mn-wms',
+        'ACCESS MAP VIEWER': 'fabutton fa fa-plus-circle md-mn-wms',
+        'application/vnd.google-earth.kml+xml': 'fabutton fa fa-globe md-mn-kml',
+        'WWW:DOWNLOAD-1.0-http--download': 'fabutton fa fa-arrow-circle-down  md-mn-download',
+        'text/html': 'fabutton fa fa-arrow-circle-right  md-mn-www',
+        'text/plain': 'fabutton fa fa-arrow-circle-right  md-mn-www',
+        'bookmark': 'fabutton fa fa-star  md-mn-bookmark'
+      };
+
+      var defaultCSS = 'fabutton fa fa-arrow-circle-right md-mn-www';
+      if (useDownload) defaultCSS = 'fabutton fa fa-arrow-circle-down md-mn-download';
+      return typesAndProtocols[type] || defaultCSS;
+};
+
