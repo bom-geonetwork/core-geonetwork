@@ -1414,12 +1414,20 @@ div.facets * .facet-more-bt,div.facets * .facet-less-bt {
 	width: 24px !important;
 }
 
-.viewpanel-button:hover {
+#viewpanel-print:hover,#viewpanel-feedback:hover,#viewpanel-tooltip:hover,#viewpanel-share:hover,#viewpanel-permalink:hover {
+	background-color: #ADAD85 !important;
+}
+
+#viewpanel-tooltip.x-btn-pressed .viewpanel-button {
 	color: orange;
 }
 
-.viewpanel-button .x-btn-pressed {
-	background-color: #0000ff;
+#viewpanel-share.x-btn-pressed .viewpanel-button {
+	color: orange;
+}
+
+#viewpanel-permalink.x-btn-pressed .viewpanel-button {
+	color: orange;
 }
 
 #metadata-info span.title {
