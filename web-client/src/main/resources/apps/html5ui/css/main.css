@@ -883,7 +883,7 @@ li.children,li.related,li.parent,li.datasets {
 	background-image: url(../../images/default/cross.png);
 }
 
-#result-panel div#resultsPanel .fabutton {
+.fabutton {
 	font-family: FontAwesome !important;
 	font-size: 2em !important;
 }
@@ -1392,39 +1392,6 @@ div.facets * .facet-more-bt,div.facets * .facet-less-bt {
 /** Interactive link/buttons
 */
 
-/* ??? FIXME: Check following */
-#metadata-panel table.x-toolbar-ct tr.x-toolbar-right-row td.x-toolbar-cell table.x-btn{
-	background-image: url('../images/sprites/sprite_icons_metadadato.png');
-}
-
-#metadata-panel .book {
-	background:none;
-}
-
-#viewpanel-feedback {
-	background-position: -101px 0px;
-	background-position-x: -101px;
-	background-position-y: 0px;
-}
-
-#viewpanel-print {
-	background-position: -404px 0px;
-	background-position-x: -404px;
-	background-position-y: 0px;
-}
-
-#permalink-button {
-	background-position: -202px 0px;
-	background-position-x: -202px;
-	background-position-y: 0px;
-}
-
-#share-button {
-	background-position: -303px 0px;
-	background-position-x: -303px;
-	background-position-y: 0px;
-}
-
 .insert-missing-elements {
 	background-image: url('../images/add-missing-elements.png');
 }
@@ -1442,34 +1409,17 @@ div.facets * .facet-more-bt,div.facets * .facet-less-bt {
   height: auto;
 }
 
-#viewpanel-feedback:hover, #viewpanel-feedback.x-btn-pressed {
-	background-position: -101px -39px;
-	background-position-y: -39px;
+.viewpanel-button {
+	height: 24px !important;
+	width: 24px !important;
 }
 
-#viewpanel-print:hover, #viewpanel-print.x-btn-pressed {
-	background-position: -404px -39px;
-	background-position-y: -39px;
+.viewpanel-button:hover {
+	color: orange;
 }
 
-#viewpanel-tooltip:hover, #viewpanel-tooltip.x-btn-pressed {
-	background-position: 0px -39px;
-	background-position-y: -39px;
-}
-
-#permalink-button:hover,#permalink-button.x-btn-pressed {
-	background-position: -202px -39px;
-	background-position-y: -39px;
-}
-
-#share-button:hover,#share-button.x-btn-pressed {
-	background-position: -303px -39px;
-	background-position-y: -39px;
-}
-
-#metadata-panel .x-btn-over tr td em button.print {
-	background-position: -404px -39px;
-	background-position-y: -39px;
+.viewpanel-button .x-btn-pressed {
+	background-color: #0000ff;
 }
 
 #metadata-info span.title {

@@ -109,3 +109,18 @@ GeoNetwork.Settings.protocolToCSS = function(type, useDownload) {
       return typesAndProtocols[type] || defaultCSS;
 };
 
+/** Provide CSS classes for iconCls on view panel buttons: print, feedback, 
+ * tooltip, share, permalink
+ */
+GeoNetwork.Settings.viewPanelButtonCSS = function(buttonId) {
+      var buttonsAndClasses = {
+        'viewpanel-print':     'viewpanel-button fabutton fa fa-print md-vw-print',
+        'viewpanel-feedback':  'viewpanel-button fabutton fa fa-comment md-vw-comment',
+        'viewpanel-tooltip':   'viewpanel-button fabutton fa fa-flag md-vw-flag',
+        'viewpanel-share':     'viewpanel-button fabutton fa fa-share md-vw-share',
+        'viewpanel-permalink': 'viewpanel-button fabutton fa fa-link md-vw-link'
+		  };
+			console.log("Called with "+buttonId+" returning "+buttonsAndClasses[buttonId]);
+			return buttonsAndClasses[buttonId];
+}
+
