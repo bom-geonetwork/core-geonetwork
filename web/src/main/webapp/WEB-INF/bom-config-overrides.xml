@@ -8,7 +8,7 @@
       	<config>
         	<context>java:/comp/env</context>
         	<resourceName>jdbc/geonetwork</resourceName>
-        	<url>jdbc:postgresql_postGIS://localhost:5432/bom-geonetworkdb</url>
+        	<url>jdbc:postgresql_postGIS://www4.bom.gov.au:5432/geonetwork</url>
         	<!--  if the database has a spatialindex table with fid, id and
             	multipolygon geometry fields (eg. see postgis) then specify true
             	here and GeoNetwork will use the database for its spatial index
