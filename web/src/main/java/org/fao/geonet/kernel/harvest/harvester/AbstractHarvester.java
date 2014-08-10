@@ -186,9 +186,17 @@ public abstract class AbstractHarvester extends BaseAligner
     private void doSchedule() throws SchedulerException {
         Scheduler scheduler = getScheduler();
 
-        JobDetail jobDetail = getParams().getJob();
-        Trigger trigger = getParams().getTrigger();
-        scheduler.scheduleJob(jobDetail, trigger);
+				if (getParams().oneRunOnly) {
+					Log.info(Geonet.HARVESTER, "NOTE: Harvester "+getParams().uuid+" is 'One Run Only' but as it is marked 'active' it will be run now");
+        	JobDetail jobDetail = getParams().getJob();
+					Trigger trigger = getParams().getTriggerNow();
+        	scheduler.scheduleJob(jobDetail, trigger);
+				} else {
+
+        	JobDetail jobDetail = getParams().getJob();
+        	Trigger trigger = getParams().getTrigger();
+        	scheduler.scheduleJob(jobDetail, trigger);
+				}
     }
 
     private void doUnschedule() throws SchedulerException {

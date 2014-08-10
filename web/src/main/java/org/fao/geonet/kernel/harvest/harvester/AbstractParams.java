@@ -37,6 +37,7 @@ import org.fao.geonet.lib.Lib;
 import org.jdom.Element;
 import org.quartz.JobDetail;
 import org.quartz.Trigger;
+import org.quartz.TriggerBuilder;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -213,12 +214,20 @@ public abstract class AbstractParams
 	}
 
 	public JobDetail getJob() {
-    	return newJob(HarvesterJob.class).withIdentity(uuid, AbstractHarvester.HARVESTER_GROUP_NAME).usingJobData(HarvesterJob.ID_FIELD, uuid).build();
-    }
+    return newJob(HarvesterJob.class).withIdentity(uuid, AbstractHarvester.HARVESTER_GROUP_NAME).usingJobData(HarvesterJob.ID_FIELD, uuid).build();
+  }
     
-    public Trigger getTrigger() {
-    	return QuartzSchedulerUtils.getTrigger(uuid, AbstractHarvester.HARVESTER_GROUP_NAME, every, MAX_EVERY);
-    }
+  public Trigger getTrigger() {
+    return QuartzSchedulerUtils.getTrigger(uuid, AbstractHarvester.HARVESTER_GROUP_NAME, every, MAX_EVERY);
+  }
+
+  public Trigger getTriggerNow() {
+		return TriggerBuilder.newTrigger()
+		                .withIdentity(uuid, AbstractHarvester.HARVESTER_GROUP_NAME)
+										.startNow()
+										.build();
+
+  }
 
 	//---------------------------------------------------------------------------
 
