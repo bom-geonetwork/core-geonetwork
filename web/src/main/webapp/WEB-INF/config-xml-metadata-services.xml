@@ -39,10 +39,12 @@
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 
+		<!-- See xml.metadata.validate 
 		<service name="xml.metadata.validation">
 			<class name=".services.metadata.Validation"/>
 			<error sheet="xml-error.xsl" contentType="application/xml; charset=UTF-8"/>
 		</service>
+		-->
 
 		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
 		<!-- Versioning Services -->
@@ -277,6 +279,24 @@
 			<error sheet="xml-error.xsl" contentType="application/xml; charset=UTF-8"/> 
     </service>
 
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+    <!-- mef import/export                                             -->
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<service name="xml.mef.import">
+			<class name=".services.mef.Import" />
+			<error sheet="xml-error.xsl" contentType="application/xml; charset=UTF-8" />
+		</service>
+
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
+
+		<service name="xml.mef.export">
+			<class name=".services.mef.Export" />
+			<output file="true" />
+			<error sheet="xml-error.xsl" contentType="application/xml; charset=UTF-8" />
+		</service>
+
+		<!-- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -->
   </services>
 </geonet>
 
