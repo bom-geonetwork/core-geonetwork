@@ -18,7 +18,6 @@
   </create>
   <data>
     <file path="WEB-INF/classes/setup/sql/data" filePrefix="data-db-"/>
-    <file path="WEB-INF/classes/setup/sql/data" filePrefix="data-db-harvester-"/>
     <file path="WEB-INF/classes/setup/sql/data" filePrefix="loc-eng-"/>
     <file path="WEB-INF/classes/setup/sql/data" filePrefix="loc-fre-"/>
     <file path="WEB-INF/classes/setup/sql/data" filePrefix="loc-ger-"/>
