@@ -16,8 +16,8 @@
 	branch = 2.10.x
 [submodule "schemaPlugins"]
 	path = schemaPlugins
-	url = https://github.com/geonetwork/schema-plugins
-	branch = 2.10.x
+	url = https://github.com/bom-geonetwork/schema-plugins
+	branch = master
 [submodule "nationalmap"]
 	path = nationalmap
 	url = https://github.com/anzmest/nationalmap
