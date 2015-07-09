@@ -18,7 +18,7 @@
 	path = schemaPlugins
 	url = https://github.com/bom-geonetwork/schema-plugins
 	branch = master
-[submodule "nationalmap"]
-	path = nationalmap
-	url = https://github.com/anzmest/nationalmap
+[submodule "nm/src/main/resources/nationalmap"]
+	path = nm/src/main/resources/nationalmap
+	url = https://github.com/anzmest/nationalmap.git
 	branch = master
