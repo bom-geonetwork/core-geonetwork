@@ -188,6 +188,24 @@
 					"display":true
 				}
 			},
+			"iso19115-2.wmo-1.3":
+			{
+				"defaultTab":"default",
+				"displayToolTip":false,
+				"related":
+				{
+					"display":true,
+					"categories":["thumbnail","service","onlinesrc","parent","sibling"]
+				},
+				"suggestion":
+				{
+					"display":false
+				},
+				"validation":
+				{
+					"display":true
+				}
+			},
 			"prov-xml":
 			{
 				"defaultTab":"default",
