@@ -6,7 +6,7 @@
          xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <skos:ConceptScheme rdf:about="4305b0a6-d100-4dae-9203-ce951e5458b5:conceptscheme:1.3.1">
       <dc:identifier>4305b0a6-d100-4dae-9203-ce951e5458b5</dc:identifier>
-      <dc:title>WMO Category Codes</dc:title>
+      <dc:title>WMO_CategoryCode</dc:title>
       <dc:description>WMO Category Codes from Codelists for description of metadata datasets compliant with the WMO Core Metadata Profile version 1.3 (derived from ISO/TC 211 19115:2003 and 19139)</dc:description>
       <dc:URI>WMO Core Metadata Profile</dc:URI>
       <dct:modified>2013-07-11</dct:modified>
