@@ -432,6 +432,10 @@ class Harvester extends BaseAligner
 			result.unknownSchema ++;
 		}
 
+		if (uuid == null) {
+			uuid = dataMan.extractUUID(schema, md);
+		}
+
 		log.info("  - Adding metadata with " + uuid + " schema is set to " + schema + "\n XML is "+ Xml.getString(md));
 		DateFormat df = new SimpleDateFormat ("yyyy-MM-dd'T'HH:mm:ss");
 		Date date = new Date();
@@ -468,9 +472,18 @@ class Harvester extends BaseAligner
 	 **/
 	
 	private void harvest(InvDataset ds) throws Exception {
+		//--- Record uuid of dataset against services that deliver it for  
+		//--- inclusion in operatesOn element in 19119 service record
+		List<InvAccess> accesses = ds.getAccess();
+		for (InvAccess access : accesses) {
+			processService(access.getService(), getUuid(ds), ds);
+		}
+
 		//--- harvest metadata only if the dataset has changed
 		if (!params.modifiedOnly || datasetChanged(ds)) {
-			if (harvestMetadataUsingFragments(ds))	{
+			if (params.harvestMetadataUsingISO) {
+				if (!isCollection(ds)) createMetadataFromISO(ds);
+			} else if (harvestMetadataUsingFragments(ds))	{
 				createMetadataUsingFragments(ds);
 			} else {
 				createDIFMetadata(ds); 
@@ -480,11 +493,47 @@ class Harvester extends BaseAligner
 		//--- Add dataset uri to list of harvested uri's
 		harvestUris.add(getUri(ds));
 
-		//--- Record uuid of dataset against services that deliver it for  
-		//--- inclusion in operatesOn element in 19119 service record
-		List<InvAccess> accesses = ds.getAccess();
-		for (InvAccess access : accesses) {
-			processService(access.getService(), getUuid(ds), ds);
+	}
+
+	//---------------------------------------------------------------------------
+	/** 
+	 * Harvest ISO metadata from catalog
+	 *
+   * @param 	ds	the dataset to be processed
+   *  
+	 **/
+	private void createMetadataFromISO(InvDataset ds) {
+		
+		System.out.println("Will be reading from "+ds.getName()+" ID: "+ds.getID());
+
+		String isoService = "";
+
+		for (String sUrl : services.keySet()) {
+		
+			ThreddsService ts = services.get(sUrl);
+
+			InvService serv = ts.service;
+
+      if(log.isDebugEnabled()) log.debug("Processing Thredds service: "+serv.toString());
+
+			if (serv.getServiceType().toString().toUpperCase().equals("ISO")) {
+				isoService = sUrl + ds.getID();
+			}
+		}
+
+		//--- Try to load thredds catalog ISO metadata record
+		System.out.println("Will load from "+isoService);
+		try {
+			XmlRequest req = new XmlRequest();
+			req.setUrl(new URL(isoService));
+			req.setMethod(XmlRequest.Method.GET);
+			Lib.net.setupProxy(context, req);
+			Element xml = req.execute();
+			saveMetadata(xml, null, getUri(ds));
+			result.atomicDatasetRecords++;
+		} catch (Exception e) {
+			result.unretrievable++;
+			e.printStackTrace();
 		}
 	}
 
@@ -978,6 +1027,7 @@ class Harvester extends BaseAligner
 				sUrl = hostUrl+s.getBase();
 			}
 
+			System.out.println("Services..."+sUrl);
 			ThreddsService ts = services.get(sUrl);
 			if (ts == null) {
 				ts = new ThreddsService();

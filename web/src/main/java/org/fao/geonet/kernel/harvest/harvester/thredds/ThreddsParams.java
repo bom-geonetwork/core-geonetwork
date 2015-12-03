@@ -82,6 +82,7 @@ public class ThreddsParams extends AbstractParams
 		collectionFragmentStylesheet	= Util.getParam(opt, "collectionFragmentStylesheet", "");
 		atomicMetadataTemplate			= Util.getParam(opt, "atomicMetadataTemplate", "");
 		collectionMetadataTemplate		= Util.getParam(opt, "collectionMetadataTemplate", "");
+		harvestMetadataUsingISO = true;
 	}
 
 	//---------------------------------------------------------------------------
@@ -122,6 +123,7 @@ public class ThreddsParams extends AbstractParams
 		collectionFragmentStylesheet	= Util.getParam(opt, "collectionFragmentStylesheet", collectionFragmentStylesheet);
 		atomicMetadataTemplate			= Util.getParam(opt, "atomicMetadataTemplate", atomicMetadataTemplate);
 		collectionMetadataTemplate		= Util.getParam(opt, "collectionMetadataTemplate", collectionMetadataTemplate);
+		harvestMetadataUsingISO = true;
 	}
 
 	//---------------------------------------------------------------------------
@@ -159,6 +161,7 @@ public class ThreddsParams extends AbstractParams
 		copy.outputSchemaOnAtomicsDIF 			= outputSchemaOnAtomicsDIF;
 		copy.outputSchemaOnAtomicsFragments 			= outputSchemaOnAtomicsFragments;
 		copy.datasetCategory    			= datasetCategory;
+		copy.harvestMetadataUsingISO  = harvestMetadataUsingISO;
 		return copy;
 	}
 	
@@ -193,6 +196,7 @@ public class ThreddsParams extends AbstractParams
 	public String	outputSchemaOnAtomicsFragments;
 	public String	outputSchemaOnCollectionsFragments;
 	public String datasetCategory;
+	public boolean harvestMetadataUsingISO;
 	
 	//---------------------------------------------------------------------------
 	//---
