@@ -4,12 +4,12 @@
 	branch = 2.10.x
 [submodule "maven_repo"]
 	path = maven_repo
-	url = https://github.com/geonetwork/core-maven-repo.git
+	url = https://github.com/anzmest/core-maven-repo.git
 	branch = master
 [submodule "web-itest/webspecs"]
 	path = web-itest/webspecs
 	url = https://github.com/camptocamp/webspecs.git
-	branch = master
+	branch = 2.10.x
 [submodule "geoserver"]
 	path = geoserver
 	url = https://github.com/geonetwork/core-geoserver.git
@@ -17,8 +17,4 @@
 [submodule "schemaPlugins"]
 	path = schemaPlugins
 	url = https://github.com/bom-geonetwork/schema-plugins
-	branch = master
-[submodule "nm/src/main/resources/nationalmap"]
-	path = nm/src/main/resources/nationalmap
-	url = https://github.com/anzmest/nationalmap.git
 	branch = master
