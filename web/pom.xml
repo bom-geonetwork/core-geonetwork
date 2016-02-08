@@ -533,11 +533,6 @@
 						<resource>
                 <directory>${project.basedir}/../web-client/src/main/resources</directory>
             </resource>	
-						<!--
-						<resource>
-                <directory>${project.basedir}/../nm/src/main/resources</directory>
-            </resource>	
-						-->
 						<resource>
 						  <directory>${project.basedir}/../web-ui/src/main/resources</directory>
 						</resource>
