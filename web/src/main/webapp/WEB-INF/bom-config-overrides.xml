@@ -30,5 +30,45 @@
 		<!-- set wms server to use geoserver -->
 		<replaceAtt xpath="mapViewer/layers/layer" attName="server" value="http://localhost:8080/geoserver/wms" />
 		<replaceAtt xpath="mapSearch/layers/layer" attName="server" value="http://localhost:8080/geoserver/wms" />
+		<addXML xpath="">
+			<!-- NICTA National Map config
+	proxyDomains: means use nationalmap corsProxy on these domains 
+	corsProxyHost: URL of corsProxy host - best if it runs on localhost 
+	disableCorsProxy: set to false on platforms that can use nationalmap server.js + varnish, true means everything will go through proxyHost (GeoNetwork)
+	proxyHost: URL of GeoNetwork proxy - used for all domains not handled by corsProxyHost 
+	baseLayer: imagery to display as base layer in national map, types accepted are wms and bingmaps
+
+											eg. for bing maps:
+
+											"type": "bingmaps"
+											"options": {
+											   "url" : "//dev.virtualearth.net",
+											},
+			 -->
+			<nationalmap>
+			{
+			    "corsDomains" : [
+						"nicta.com.au",
+						"gov.au",
+						"arcgis.com"
+					],
+					"corsProxyHost"    :  "http://localhost:3001",
+					"disableCorsProxy" :  "true",
+					"proxyHost"        :  "../../proxy/",
+					"baseLayer"        : {
+						     "type" : "bing",
+						     "options" : {
+							        "url"    : "//dev.virtualearth.net"
+						     }
+					},
+					"terrainProvider" : {
+						"options" : {
+							"url"    : "//assets.agi.com/stk-terrain/v1/tilesets/world/tiles"
+						}
+					}
+			}
+			</nationalmap>
+		</addXML>
 	</file>
 </overrides>
+
