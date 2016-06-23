@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <ViewContext xmlns="http://www.opengis.net/context" version="1.1.0" id="default"
 	xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ol="http://openlayers.org/context"
 	xsi:schemaLocation="http://www.opengis.net/context http://schemas.opengis.net/context/1.1.0/context.xsd"
@@ -12,7 +12,7 @@
 		<Layer queryable="0" hidden="0">
 			<Server service="OGC:WMS" version="1.1.1">
 				<OnlineResource xlink:type="simple"
-					xlink:href="http://localhost:8080/geoserver/wms?SERVICE=WMS"/>
+					xlink:href="http://localhost:9090/geoserver/wms?SERVICE=WMS"/>
 			</Server>
 			<Name>gn:world</Name>
 			<Title>World</Title>
@@ -37,7 +37,7 @@
 		<Layer queryable="0" hidden="0">
 			<Server service="OGC:WMS" version="1.1.1">
 				<OnlineResource xlink:type="simple"
-					xlink:href="http://localhost:8080/geoserver/wms?SERVICE=WMS"/>
+					xlink:href="http://localhost:9090/geoserver/wms?SERVICE=WMS"/>
 			</Server>
 			<Name>gn:ne_50m_boundary_da,gn:ne_50m_boundary_lines_land,gn:ne_50m_coastline</Name>
 			<Title>Country boundaries</Title>
@@ -59,5 +59,5 @@
 				<ol:singleTile>true</ol:singleTile>
 			</Extension>
 		</Layer>
-	</LayerList>
+	</LayerList>      
 </ViewContext>

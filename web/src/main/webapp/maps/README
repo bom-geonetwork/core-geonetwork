@@ -1,0 +1,11 @@
+GeoNetwork uses whatever map context is in mapviewer.wmc as the background to the spatial search
+map in the advanced options of the html5ui interface. 
+
+To change this just copy the required wmc file
+to mapview.wmc. At the moment, mapviewer_demis.wmc has been copied into mapviewer.wmc. 
+
+Descriptions:
+
+mapviewer_demis.wmc - uses Netherlands wms server demis to deliver continents and countries.
+mapviewer_geoserverlocalhost.wmc - uses a GeoServer on localhost:8080 to deliver continents and countries.
+wdev.bom.gov.au.wmc - uses a GeoServer on wdev/www4.bom.gov.au to deliver continents and countries.
