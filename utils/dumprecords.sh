@@ -41,7 +41,7 @@ if [ -z $FROM_HOST ] || [ -z $FROM_CRED ] || [ -z $OUTPUTFILE ]
 then
   echo "Usage: $0 -h <geonetwork_host_url> -c <credentials> -o <outputfile>" >&2
 	echo >&2
-	echo "eg. $0 -h http://wwww4.bom.gov.au:8080/geonetwork -c admin:admin -o exportfull.zip" >&2
+	echo "eg. $0 -h http://localhost:8080/geonetwork -c admin:admin -o exportfull.zip" >&2
 	exit 1
 fi
 
