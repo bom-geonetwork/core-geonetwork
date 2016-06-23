@@ -22,7 +22,7 @@ while getopts ":c:h:i:" opt; do
       ;;
     h)
       echo "Wiping and loading host: $OPTARG" >&2
-			TO_HOST=$OPTARG
+			TO_HOST=${OPTARG}/srv/eng
       ;;
     c)
       echo "GeoNetwork credentials are: $OPTARG" >&2
@@ -43,7 +43,7 @@ if [ -z $TO_HOST ] || [ -z $TO_CRED ] || [ -z $INPUTFILE ]
 then
   echo "Usage: $0 -h <geonetwork_host_url> -c <credentials> -i <inputfile>" >&2
 	echo >&2
-	echo "eg. $0 -h http://wwww4.bom.gov.au:8080/geonetwork -c admin:admin -i exportfull.zip" >&2
+	echo "eg. $0 -h http://localhost:8080/geonetwork -c admin:admin -i exportfull.zip" >&2
 	exit 1
 fi
 

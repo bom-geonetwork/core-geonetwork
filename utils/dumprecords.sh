@@ -20,7 +20,7 @@ while getopts ":c:h:o:" opt; do
       ;;
     h)
       echo "Dumping from host: $OPTARG" >&2
-			FROM_HOST=$OPTARG
+			FROM_HOST=${OPTARG}/srv/eng
       ;;
     c)
       echo "GeoNetwork credentials are: $OPTARG" >&2
@@ -51,10 +51,10 @@ set -x
 rm from_cookies
 
 # Extract all metadata as mef files from FROM_HOST GeoNetwork instance
-curl -o /dev/null --cookie-jar $FROM_COOK -i -w "%{http_code}" -H 'Accept:application/xml' -u $FROM_CRED ${FROM_HOST}/xml.search\?_groupPublished=forPublic\&_status=2
+curl -o /dev/null --cookie-jar $FROM_COOK -i -w "%{http_code}" -H 'Accept:application/xml' -u $FROM_CRED ${FROM_HOST}/xml.search\?_groupPublished=forPublic
 
-curl --cookie $FROM_COOK -w "%{http_code}" -H 'Accept:application/xml' -u $FROM_CRED ${FROM_HOST}/xml.metadata.select?selected=add-all
+curl --cookie $FROM_COOK -w "%{http_code}" -H 'Accept:application/xml' ${FROM_HOST}/xml.metadata.select?selected=add-all
 
-curl --connect-timeout 90000000 --max-time 90000000 --cookie $FROM_COOK -w "%{http_code}" -H 'Accept:application/zip' -u $FROM_CRED ${FROM_HOST}/xml.mef.export?format=full\&version=2 -o $OUTPUTFILE
+curl --connect-timeout 90000000 --max-time 90000000 --cookie $FROM_COOK -w "%{http_code}" -H 'Accept:application/zip' ${FROM_HOST}/xml.mef.export?format=full\&version=2 -o $OUTPUTFILE
 
 exit 0
