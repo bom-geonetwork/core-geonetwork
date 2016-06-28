@@ -132,13 +132,32 @@
                 <table width="100%" class="text-aligned-left">
 
                     <!-- metadata services -->
+
                     <xsl:variable name="mdServices">
+                        <xsl:if test="not($readonly) and /root/gui/config/client/@widget!='true'">
+                            <xsl:call-template name="addrow">
+                                <xsl:with-param name="service" select="'metadata.create.form'"/>
+                                <xsl:with-param name="title" select="/root/gui/strings/newMetadata"/>
+                                <xsl:with-param name="desc" select="/root/gui/strings/newMdDes"/>
+                                <xsl:with-param name="icon">page_add.png</xsl:with-param>
+                            </xsl:call-template>
+                        </xsl:if>
+ 
                         <xsl:call-template name="addrow">
                             <xsl:with-param name="service" select="'metadata.searchunused.form'"/>
                             <xsl:with-param name="title"
                                             select="/root/gui/strings/searchUnusedTitle"/>
                             <xsl:with-param name="desc" select="/root/gui/strings/searchUnused"/>
                         </xsl:call-template>
+
+                        <xsl:if test="not($readonly) and /root/gui/config/client/@widget!='true'">
+                            <xsl:call-template name="addrow">
+                               <xsl:with-param name="service" select="'main.search'"/>
+                               <xsl:with-param name="args" select="'hitsPerPage=10&amp;editable=true'"/>
+                               <xsl:with-param name="title" select="/root/gui/strings/mymetadata"/>
+                               <xsl:with-param name="desc" select="/root/gui/strings/mymetadata"/>
+                            </xsl:call-template>
+                        </xsl:if>
 
                         <xsl:if test="not($readonly)">
                             <xsl:call-template name="addrow">
