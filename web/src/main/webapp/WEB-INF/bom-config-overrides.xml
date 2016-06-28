@@ -34,6 +34,9 @@
     <replaceXML xpath="mapSearch/layers">
        <layer server="http://www.cmar.csiro.au/geoserver/wms" tocName="BrightEarth"  params="{layers: 'ea-be:World_Bright-Earth-e-Atlas-basemap_No-Labels', transparent: 'false', format: 'image/png'}"  options="{}" />
     </replaceXML>
+    <replaceXML xpath="mapViewer/layers">
+       <layer server="http://www.cmar.csiro.au/geoserver/wms" tocName="BrightEarth"  params="{layers: 'ea-be:World_Bright-Earth-e-Atlas-basemap_No-Labels', transparent: 'false', format: 'image/png'}"  options="{}" />
+    </replaceXML>
     <!--
 		<replaceAtt xpath="mapViewer/layers/layer" attName="server" value="http://localhost:8080/geoserver/wms" />
 		<replaceAtt xpath="mapSearch/layers/layer" attName="server" value="http://localhost:8080/geoserver/wms" />
