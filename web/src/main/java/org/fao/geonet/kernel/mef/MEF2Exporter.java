@@ -36,6 +36,7 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.util.Set;
+import java.util.UUID;
 import java.util.zip.ZipOutputStream;
 
 import jeeves.resources.dbms.Dbms;
@@ -111,7 +112,10 @@ class MEF2Exporter {
 			String uuid, ZipOutputStream zos, boolean skipUUID,
 			String stylePath, Format format, boolean resolveXlink, boolean removeXlinkAttribute) throws Exception {
 
-		MEFLib.createDir(zos, uuid + FS);
+    // don't create a directory based on the metadata uuid, instead create based on a brand new uuid as the
+    // metadata uuid may contain characters like '/'
+    String directoryUuid = UUID.randomUUID().toString();
+		MEFLib.createDir(zos, directoryUuid + FS);
 
 		Element record = MEFLib.retrieveMetadata(context, dbms, uuid, resolveXlink, removeXlinkAttribute);
 
@@ -126,8 +130,8 @@ class MEF2Exporter {
 		String priDir = Lib.resource.getDir(context, "private", id);
 
 		// --- create folders
-		MEFLib.createDir(zos, uuid + FS + DIR_PUBLIC);
-		MEFLib.createDir(zos, uuid + FS + DIR_PRIVATE);
+		MEFLib.createDir(zos, directoryUuid + FS + DIR_PUBLIC);
+		MEFLib.createDir(zos, directoryUuid + FS + DIR_PRIVATE);
 
 		// Always save metadata in iso 19139
 		if (schema.contains("iso19139") && !schema.equals("iso19139")) {
@@ -144,38 +148,38 @@ class MEF2Exporter {
 
 			ByteArrayInputStream data19139 = formatData(profilMetadata, true,
 					path);
-			MEFLib.addFile(zos, uuid + FS + MD_DIR + FILE_METADATA_19139,
+			MEFLib.addFile(zos, directoryUuid + FS + MD_DIR + FILE_METADATA_19139,
 					data19139);
 		}
 
 		// --- save native metadata
 		ByteArrayInputStream data = formatData(record);
-		MEFLib.addFile(zos, uuid + FS + MD_DIR + FILE_METADATA, data);
+		MEFLib.addFile(zos, directoryUuid + FS + MD_DIR + FILE_METADATA, data);
 
 		// --- save Feature Catalog
 		String ftUUID = getFeatureCatalogID(context, dbms, uuid);
 		if (!ftUUID.equals("")) {
 			Element ft = MEFLib.retrieveMetadata(context, dbms, ftUUID, resolveXlink, removeXlinkAttribute);
 			ByteArrayInputStream ftData = formatData(ft);
-			MEFLib.addFile(zos, uuid + FS + SCHEMA + FILE_METADATA, ftData);
+			MEFLib.addFile(zos, directoryUuid + FS + SCHEMA + FILE_METADATA, ftData);
 		}
 
 		// --- save info file
 		byte[] binData = MEFLib.buildInfoFile(context, record, format, pubDir,
 				priDir, skipUUID).getBytes("UTF-8");
 
-		MEFLib.addFile(zos, uuid + FS + FILE_INFO, new ByteArrayInputStream(
+		MEFLib.addFile(zos, directoryUuid + FS + FILE_INFO, new ByteArrayInputStream(
 				binData));
 
 		// --- save thumbnails and maps
 
 		if (format == Format.PARTIAL || format == Format.FULL)
-			MEFLib.savePublic(zos, pubDir, uuid);
+			MEFLib.savePublic(zos, pubDir, directoryUuid);
 
 		if (format == Format.FULL) {
 			try {
 				Lib.resource.checkPrivilege(context, id, AccessManager.OPER_DOWNLOAD);
-				MEFLib.savePrivate(zos, priDir, uuid);
+				MEFLib.savePrivate(zos, priDir, directoryUuid);
 			} catch (Exception e) {
 				// Current user could not download private data
 			}
