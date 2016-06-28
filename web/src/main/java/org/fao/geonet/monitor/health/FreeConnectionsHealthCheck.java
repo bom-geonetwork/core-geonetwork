@@ -25,13 +25,17 @@ public class FreeConnectionsHealthCheck implements HealthCheckFactory {
                 Stats stats;
                 try {
                     stats = context.getResourceManager().getStats(Geonet.Res.MAIN_DB);
-                    int free = stats.maxActive - stats.numActive;
-                    double fivePercent = Math.max(2.0, ((double) stats.maxActive) * 0.01);
-                    if (free < fivePercent) {
-                        Result.unhealthy("There are insufficient free connections on database" + Geonet.Res.MAIN_DB
-                                + ".  Connections free:" + free);
-                    }
-                    return Result.healthy();
+                    if (stats.maxActive == null || stats.numActive == null) {
+											return Result.unhealthy("Cannot determine free connections on database - could be using JNDI?");
+                    } else {
+                    	int free = stats.maxActive - stats.numActive;
+                    	double fivePercent = Math.max(2.0, ((double) stats.maxActive) * 0.01);
+                    	if (free < fivePercent) {
+                        	Result.unhealthy("There are insufficient free connections on database" + Geonet.Res.MAIN_DB
+                                	+ ".  Connections free:" + free);
+                    	}
+                    	return Result.healthy();
+										}
                 } catch (Exception e) {
                     return Result.unhealthy(e);
                 }
