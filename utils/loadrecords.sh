@@ -16,7 +16,7 @@ export INPUTFILE=
 
 while getopts ":c:h:i:" opt; do
   case $opt in
-    o)
+    i)
       echo "MEFS will be loaded from file: $OPTARG" >&2
 			INPUTFILE=$OPTARG
       ;;
