@@ -31,8 +31,13 @@
 	     classic interface only -->
 	<file name=".*WEB-INF/config-gui\.xml">
 		<!-- set wms server to use geoserver -->
+    <replaceXML xpath="mapSearch/layers">
+       <layer server="http://www.cmar.csiro.au/geoserver/wms" tocName="BrightEarth"  params="{layers: 'ea-be:World_Bright-Earth-e-Atlas-basemap_No-Labels', transparent: 'false', format: 'image/png'}"  options="{}" />
+    </replaceXML>
+    <!--
 		<replaceAtt xpath="mapViewer/layers/layer" attName="server" value="http://localhost:8080/geoserver/wms" />
 		<replaceAtt xpath="mapSearch/layers/layer" attName="server" value="http://localhost:8080/geoserver/wms" />
+    -->
 		<addXML xpath="">
 			<!-- NICTA National Map config
 	proxyDomains: means use nationalmap corsProxy on these domains 
@@ -59,9 +64,10 @@
 					"disableCorsProxy" :  "true",
 					"proxyHost"        :  "../../proxy/",
 					"baseLayer"        : {
-						     "type" : "bing",
+						     "type" : "wms",
 						     "options" : {
-							        "url"    : "//dev.virtualearth.net"
+							        "url"    : "http://www.cmar.csiro.au/geoserver/wms?",
+                      "layers" : "ea-be:World_Bright-Earth-e-Atlas-basemap_No-Labels"
 						     }
 					},
 					"terrainProvider" : {
