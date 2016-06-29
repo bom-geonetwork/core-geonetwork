@@ -26,6 +26,9 @@
 		<replaceXML xpath="about.text">
 			<b>BOM - Australian Government Bureau of Meteorology</b>
 		</replaceXML>
+    <replaceXML xpath="mainpage2">
+      <p>For more information, please contact <a href="mailto:metadata@bom.gov.au">metadata@bom.gov.au</a></p>
+    </replaceXML>
 	</file>
 	<!-- Add localhost as geoserver layers for maps in
 	     classic interface only -->
