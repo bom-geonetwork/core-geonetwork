@@ -66,7 +66,7 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
                 <sec:intercept-url pattern="/srv/[a-z]{2,3}/thesaurus.update!?.*" access="hasRole('Administrator')"></sec:intercept-url>
                 <sec:intercept-url pattern="/srv/[a-z]{2,3}/thesaurus.upload!?.*" access="hasRole('Administrator')"></sec:intercept-url>
                 <sec:intercept-url pattern="/srv/[a-z]{2,3}/xml.thesaurus.upload!?.*" access="hasRole('Administrator')"></sec:intercept-url>
-                <sec:intercept-url pattern="/srv/[a-z]{2,3}/thesaurus.download!?.*" access="hasRole('Administrator')"></sec:intercept-url>
+                <sec:intercept-url pattern="/srv/[a-z]{2,3}/thesaurus.download!?.*" access="permitAll"></sec:intercept-url>
                 <sec:intercept-url pattern="/srv/[a-z]{2,3}/thesaurus.delete!?.*" access="hasRole('Administrator')"></sec:intercept-url>
                 <sec:intercept-url pattern="/srv/[a-z]{2,3}/thesaurus.editelement!?.*" access="hasRole('Administrator')"></sec:intercept-url>
                 <sec:intercept-url pattern="/srv/[a-z]{2,3}/thesaurus.addelement!?.*" access="hasRole('Administrator')"></sec:intercept-url>
