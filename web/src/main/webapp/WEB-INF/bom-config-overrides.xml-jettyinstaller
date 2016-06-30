@@ -1,23 +1,4 @@
 <overrides>
-	<file name=".*WEB-INF/config\.xml">
-    <!-- Depends on database config - see /usr/local/src/config/context.xml -->
-		<replaceXML xpath="resources">
-			<resource enabled="true">
-      	<name>main-db</name>
-      	<provider>jeeves.resources.dbms.JNDIPool</provider>
-      	<config>
-       		<context>java:/comp/env</context>
-       		<resourceName>jdbc/geonetwork</resourceName>
-					<url>jdbc:postgresql_postGIS://localhost:5432/geonetwork</url>
-       		<provideDataStore>true</provideDataStore>
-       		<maxOpenPreparedStatements>300</maxOpenPreparedStatements>
-      	</config>
-    	</resource>
-		</replaceXML>
-    <!-- Depends on location of the data directory - see /usr/local/src/config/tomcat-->
-		<replaceText xpath="general/uploadDir">/data/GEONETWORK_DATA/data/tmp</replaceText>
-	</file>
-	
 	<!-- provide BOM welcome and about text overrides -->
 	<file name=".*geonetwork/loc/eng/xml/strings\.xml">
 		<replaceXML xpath="welcome.text">

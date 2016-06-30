@@ -119,6 +119,9 @@
 			
 			<fileset dir="../web/target/geonetwork"  targetdir="$INSTALL_PATH/web/geonetwork" />
 
+                        <!-- Stick bom jetty config overrides into bom config overrides -->
+			<singlefile src="../web/target/geonetwork/WEB-INF/bom-config-overrides.xml-jettyinstaller"  target="$INSTALL_PATH/web/geonetwork/WEB-INF/bom-config-overrides.xml" override="true"/>
+
 			<fileset dir="../release/data"   targetdir="$INSTALL_PATH/web/geonetwork/data" />
 			<fileset dir="../release/schemaPlugins"   targetdir="$INSTALL_PATH/web/geonetwork/WEB-INF/data/config/schema_plugins" />
 			
