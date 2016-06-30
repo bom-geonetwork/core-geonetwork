@@ -76,12 +76,18 @@
 		</xsl:variable>
 
         <xsl:variable name="readonly" select="/root/gui/env/readonly = 'true'"/>
+
 		<xsl:if test="not($readonly) and not($ownerbuttonsonly) and
 	 /root/gui/schemalist/name[.=$metadata/geonet:info/schema]/@edit='true'">
 			&#160;
 			<!-- create button -->
 			<xsl:variable name="duplicate" select="concat(/root/gui/strings/duplicate,': ',$ltitle)"/>
-			<xsl:if test="string(geonet:info/isTemplate)!='s' and (geonet:info/isTemplate='y' or geonet:info/source=/root/gui/env/site/siteId) and java:isAccessibleService('metadata.duplicate.form')">
+			<xsl:if test="string(geonet:info/isTemplate)!='s' and 
+(geonet:info/isTemplate='y' or 
+ geonet:info/source=/root/gui/env/site/siteId or 
+ ((/root/gui/config/harvester/enableEditing = 'true' and geonet:info/isHarvested = 'y' and geonet:info/edit='true')
+   or (geonet:info/isHarvested = 'n' and geonet:info/edit='true'))) 
+           and java:isAccessibleService('metadata.duplicate.form')">
 				<button class="content" onclick="load('{/root/gui/locService}/metadata.duplicate.form?id={$metadata/geonet:info/id}')"><xsl:value-of select="/root/gui/strings/create"/></button>
 			</xsl:if>
 
