@@ -525,19 +525,12 @@
 	<div class="row">  <!-- div row-->
 		<span class="labelField"><xsl:value-of select="/root/gui/strings/keywords"/></span>
 		<span title="{/root/gui/strings/searchhelp/keywords}">
-			<xsl:choose>
-				<xsl:when test="not($remote)">
-				  <input id="themekey" name="themekey" onClick="popSelector(this,'keywordSelectorFrame','keywordSelector','portal.search.keywords?mode=selector&amp;keyword','themekey');" class="content" size="31" value="{/root/gui/searchDefaults/themekey}"/>
-				</xsl:when>
-				<xsl:otherwise>
-				  <input id="themekey" name="themekey" class="content" size="31" value="{/root/gui/searchDefaults/themekey}" />
-				</xsl:otherwise>
-			</xsl:choose>
+		  <input id="themekey" name="themekey" class="content" size="31" value="{/root/gui/searchDefaults/themekey}"/>
 		</span>
 
-		<xsl:if test="/root/gui/config/search/keyword-selection-panel and not($remote)">
-			<a style="cursor:pointer;" onclick="javascript:showSearchKeywordSelectionPanel();">
-				<img src="{/root/gui/url}/images/find.png" alt="{/root/gui/strings/searchhelp/thesaurus}" title="{/root/gui/strings/searchhelp/thesaurus}"/>
+		<xsl:if test="not($remote)">
+			<a style="cursor:pointer;" onClick="popSelector('themekey','keywordSelectorFrame','keywordSelector','portal.search.keywords?mode=selector&amp;keyword','themekey');">
+				<img src="{/root/gui/url}/images/find.png" alt="Click to show keywords" title="Click to show keywords"/>
 			</a>
 		</xsl:if>
 		
@@ -999,8 +992,11 @@
 		<div class="row">
 			<span class="labelField"><xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/credit"/></span>
 			<span title="{/root/gui/schemas/iso19139.mcp/strings/creditHelp}">
-				<input name="credit" id="credit" class="content"  size="31" value="{/root/gui/searchDefaults/credit}" onclick="popSelector(this,'creditSelectorFrame','creditSelector','portal.search.credits?mode=selector&amp;credit','credit');" />
+				<input name="credit" id="credit" class="content"  size="31" value="{/root/gui/searchDefaults/credit}"/>
 			</span>
+			<a style="cursor:pointer;" onClick="popSelector('credit','creditSelectorFrame','creditSelector','portal.search.credits?mode=selector&amp;credit','credit');">
+			  <img src="{/root/gui/url}/images/find.png" alt="Click to show credit parties" title="Click to show credit parties"/>
+			</a>
 			<div id="creditSelectorFrame" class="keywordSelectorFrame" style="display:none;z-index:1000;">
 				<div id="creditSelector" class="keywordSelector"/>
 			</div>
@@ -1010,25 +1006,17 @@
 		<div class="row">
 			<span class="labelField"><xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/dataparam"/></span>
 			<span title="{/root/gui/schemas/iso19139.mcp/strings/dataparamHelp}">
-				<input name="dataparam" id="dataparam" class="content"  size="31" value="{/root/gui/searchDefaults/dataparam}" onclick="popSelector(this,'dataparamSelectorFrame','dataparamSelector','portal.search.dataparams?mode=selector&amp;dataparam','dataparam');"/>
+				<input name="dataparam" id="dataparam" class="content"  size="31" value="{/root/gui/searchDefaults/dataparam}" onclick="popSelector('dataparam','dataparamSelectorFrame','dataparamSelector','portal.search.dataparams?mode=selector&amp;dataparam','dataparam');"/>
 			</span>
+			<a style="cursor:pointer;" onClick="popSelector('dataparam','dataparamSelectorFrame','dataparamSelector','portal.search.dataparams?mode=selector&amp;dataparam','dataparam');">
+			  <img src="{/root/gui/url}/images/find.png" alt="Click to show data parameters" title="Click to show data parameters"/>
+			</a>
 
 			<div id="dataparamSelectorFrame" class="keywordSelectorFrame" style="display:none;z-index:1000;">
 				<div id="dataparamSelector" class="keywordSelector"/>
 			</div>
 		</div>
 
-		<!-- Taxonomic info (MCP only) -->
-		<div class="row">
-			<span class="labelField"><xsl:value-of select="/root/gui/schemas/iso19139.mcp/strings/taxon"/></span>
-			<span title="{/root/gui/schemas/iso19139.mcp/strings/taxonHelp}">
-				<input name="taxon" id="taxon" class="content"  size="31" value="{/root/gui/searchDefaults/taxon}" onclick="popSelector(this,'taxonSelectorFrame','taxonSelector','portal.search.taxonNames?mode=selector&amp;taxon','taxon');"/>
-			</span>
-
-			<div id="taxonSelectorFrame" class="keywordSelectorFrame" style="display:none;z-index:1000;">
-				<div id="taxonSelector" class="keywordSelector"/>
-			</div>
-		</div>
 	</xsl:if>
 </xsl:template>
 
