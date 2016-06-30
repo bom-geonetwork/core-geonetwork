@@ -289,6 +289,7 @@ function runAdvancedSearch(type)
 	setSort();
 
 	var pars = $('advanced_search_form').serialize(true);
+	if (pars['download']) pars['download'] = 'on'; 
 
     if (type == "pdf")
        gn_searchpdf(pars);
@@ -306,7 +307,7 @@ function resetAdvancedSearch()
 
 	// Now set the special form fields to their defaults
 	radioSimil = form['similarity'];
-	radioSimil[1].checked=true;
+	radioSimil[0].checked=true;
 
 	resetWherePars();
 
