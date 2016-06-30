@@ -53,6 +53,8 @@
 				<link rel="stylesheet" type="text/css" href="{/root/gui/url}/scripts/geoext/resources/css/geoext-all-debug.css"/>
 				<script type="text/javascript" src="{/root/gui/url}/scripts/ext/ext-all-debug.js" /><xsl:text>&#10;</xsl:text>
 				<script type="text/javascript" src="{/root/gui/url}/scripts/ext/form/FileUploadField.js" /><xsl:text>&#10;</xsl:text>
+
+		    <xsl:call-template name="ext-ux"/>
 				
 				<script type="text/javascript" src="{/root/gui/url}/scripts/openlayers/OpenLayers.js"/><xsl:text>&#10;</xsl:text>
 				<script type="text/javascript" src="{/root/gui/url}/scripts/openlayers/lib/OpenLayers/Format/CSWGetRecords.js"/><xsl:text>&#10;</xsl:text>
@@ -76,6 +78,7 @@
 			<xsl:otherwise>     
 				<script type="text/javascript" src="{/root/gui/url}/scripts/ext/ext-all.js"/><xsl:text>&#10;</xsl:text>
 				<script type="text/javascript" src="{/root/gui/url}/scripts/ext/form/FileUploadField.js"/><xsl:text>&#10;</xsl:text>
+		    <xsl:call-template name="ext-ux"/>
 
 				<!-- For now using standard OpenLayers.js and GeoExt.js compressed files.  TODO: Change to use gn.geo.libs.js -->  
 				<!--script type="text/javascript" src="{/root/gui/url}/scripts/lib/gn.geo.libs.js"></script--> 
@@ -128,6 +131,7 @@
 		<xsl:call-template name="extentViewerJavascriptInit"/>
 
 		<xsl:call-template name="css"/>
+		<xsl:call-template name="ext-ux-css"/>
 	</xsl:template>
 
 	<xsl:template name="ext-ux-css">
