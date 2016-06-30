@@ -486,6 +486,7 @@ public class CatalogSearcher {
 		query.add(groups, occur);
 
 		// if no authenticated user then only show approved records ie _status = 2
+/* NOT for BOM
 		if (context.getUserSession().getUserId() == null) {
 		  BooleanQuery bq = new BooleanQuery();
 		  BooleanClause.Occur statoccur = LuceneUtils
@@ -494,6 +495,7 @@ public class CatalogSearcher {
 			bq.add(tq, statoccur);
 			query.add(bq, occur);
 		}
+*/
 
         if (cswCustomFilterQuery != null) {
             query.add(cswCustomFilterQuery, occur);
