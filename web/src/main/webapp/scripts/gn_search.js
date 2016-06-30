@@ -976,18 +976,19 @@ function setBoolParam(p, val)
    * Place popup according to input element position.
    * Load list of keywords
    * 
-   * @param el
+   * @param elId
    * @param pop
    * @return
    */
-  function popSelector(el, popId, selectorId, service, input){
+  function popSelector(elId, popId, selectorId, service, input){
 
 		var pop = $(popId);
     if (pop.style.display == "block") {
         pop.style.display = "none";
         return false;
     }
-                
+           
+    var el = $(elId);     
     pop.style.top = el.cumulativeOffset().top + el.getHeight();
     pop.style.left = el.cumulativeOffset().left;
     pop.style.width = '250px'; //el.getWidth();
