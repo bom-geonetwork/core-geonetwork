@@ -60,13 +60,9 @@ if [ "$RESPONSE" != "y" ]; then
 fi
 
 set -x
-# Load them into TO_HOST GeoNetwork instance after clearing it out first
-curl -o /dev/null --cookie-jar $TO_COOK -i -w "%{http_code}" -H 'Accept:application/xml' -u $TO_CRED ${TO_HOST}/xml.search?any=
+# Load them into TO_HOST GeoNetwork instance with uuidAction set to overwrite so that any existing records will be
+# replaced with existing records
 
-curl --cookie $TO_COOK -w "%{http_code}" -H 'Accept:application/xml' -u $TO_CRED ${TO_HOST}/xml.metadata.select?selected=add-all
-
-curl --cookie $TO_COOK -w "%{http_code}" -H 'Accept:application/xml' -u $TO_CRED ${TO_HOST}/xml.metadata.batch.delete
-
-curl --cookie $TO_COOK -w "%{http_code}" -H 'Accept:application/zip' -u $TO_CRED -F data="" -F file_type=mef -F insert_mode=1 -F assign=on -F mefFile=@$INPUTFILE -F uuidAction=nothing -F template=n -F category=_none_ -F styleSheet=_none_ ${TO_HOST}/xml.mef.import
+curl --cookie-jar $TO_COOK -w "%{http_code}" -H 'Accept:application/zip' -u $TO_CRED -F data="" -F file_type=mef -F insert_mode=1 -F assign=on -F mefFile=@$INPUTFILE -F uuidAction=overwrite -F template=n -F category=_none_ -F styleSheet=_none_ ${TO_HOST}/xml.mef.import
 
 exit 0
